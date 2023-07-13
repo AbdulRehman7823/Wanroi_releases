@@ -1,0 +1,41 @@
+{
+  "name": "wanroi",
+  "version": "1.0.0",
+  "description": "Browser application",
+  "main": "main.js",
+  "repository": "https://github.com/AbdulRehman7823/Wanroi_releases.git",
+  "publish": {
+    "provider": "github",
+    "releaseType": "release"
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "build": {
+    "appId": "com.wanroi.browser",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "oneClick": true,
+      "installerIcon": "icon.ico",
+      "uninstallerIcon": "icon.ico",
+      "uninstallDisplayName": "wanroi-uninstaller",
+      "allowToChangeInstallationDirectory": false
+    }
+  },
+  "author": "abdulman7823",
+  "license": "ISC",
+  "dependencies": {
+    "electron-updater": "^6.1.1"
+  },
+  "devDependencies": {
+    "electron": "^25.3.0",
+    "electron-builder": "^24.4.0"
+  }
+}

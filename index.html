@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanroi</title>
+    <style>
+        .title-bar {
+            width: 100%;
+            height: 2.5rem;
+            background-color: rgb(48, 48, 48);
+            margin: 0px o !important;
+            display: flex !important;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        body {
+            margin: 0px;
+        }
+
+        .window-controls {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .window-controls span {
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .window-controls span svg {
+            fill: white;
+            width: 20px;
+            height: 20px;
+
+        }
+
+        .window-controls span svg:hover {
+            fill: rgb(57, 141, 130);
+            transition: 0.3s;
+        }
+
+
+        .tab-list {
+            flex-grow: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: end;
+            padding-left: 2px;
+            padding-right: 10px;
+            color: #FFFF;
+
+
+        }
+
+        .wanroi-tab {
+            max-width: 200px;
+            background-color: purple;
+            display: flex;
+            flex-direction: row;
+            height: 30px;
+            align-items: center;
+            justify-content: flex-start;
+            cursor: pointer;
+            padding: 0px 5px;
+            border-radius: 5px;
+
+        }
+
+
+        .wanroi-tab-fav {
+            width: 22px;
+            height: 22px;
+            margin-right: 10px;
+        }
+
+        .wanroi-tab-fav img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+
+        }
+
+        .wanroi-tab-title {
+            padding-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="browser-main-container">
+        <div class="title-bar">
+            <div class="tab-list">
+
+                <div class="wanroi-tab" onclick="openView('a')">
+                    <div class="wanroi-tab-fav">
+                        <img class=""
+                            src="https://play-lh.googleusercontent.com/LV7OyTqt7ONFCt1ZM03_aDMD_uXXiJYWt_-ItgY0vHBYlMoZ0UWbnUEqJ4yRS-NrMQ">
+                    </div>
+                    <div class="wanroi-tab-title">
+                        Wanroi.com
+                    </div>
+                </div>
+                <div class="wanroi-tab" onclick="openView('b')">
+                    <div class="wanroi-tab-fav">
+                        <img class=""
+                            src="https://play-lh.googleusercontent.com/LV7OyTqt7ONFCt1ZM03_aDMD_uXXiJYWt_-ItgY0vHBYlMoZ0UWbnUEqJ4yRS-NrMQ">
+                    </div>
+                    <div class="wanroi-tab-title">
+                        Google.com
+                    </div>
+                </div>
+
+
+                <div id="message" style="text-align:center; color:#FFFF">
+
+                </div>
+            </div>
+
+            <div class="window-controls">
+                <span class="">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48">
+                        <path d="M240-130v-60h481v60H240Z" />
+                    </svg>
+                </span>
+                <span class="">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48">
+                        <path
+                            d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h600q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Zm0-60h600v-600H180v600Zm0 0v-600 600Z" />
+                    </svg> </span>
+                <span class="" onclick="closeWindow()">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48">
+                        <path
+                            d="m249-207-42-42 231-231-231-231 42-42 231 231 231-231 42 42-231 231 231 231-42 42-231-231-231 231Z" />
+                    </svg>
+                </span>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./ipc.js"></script>
+
+</html>
