@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,wanroi=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link href="./style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="surface">
+    <div class="mock-browser">
+      <div class="wanroi-tabs" style="--tab-content-margin: 9px;">
+        <div class="wanroi-tabs-content">
+          <div class="wanroi-tab" active id="tab_0">
+            <div class="wanroi-tab-dividers"></div>
+            <div class="wanroi-tab-background">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <symbol id="wanroi-tab-geometry-left" viewBox="0 0 214 36">
+                    <path d="M17 0h197v36H0v-2c4.5 0 9-3.5 9-8V8c0-4.5 3.5-8 8-8z" />
+                  </symbol>
+                  <symbol id="wanroi-tab-geometry-right" viewBox="0 0 214 36">
+                    <use xlink:href="#wanroi-tab-geometry-left" />
+                  </symbol>
+                  <clipPath id="crop">
+                    <rect class="mask" width="100%" height="100%" x="0" />
+                  </clipPath>
+                </defs><svg width="52%" height="100%">
+                  <use xlink:href="#wanroi-tab-geometry-left" width="214" height="36" class="wanroi-tab-geometry" />
+                </svg>
+                <g transform="scale(-1, 1)"><svg width="52%" height="100%" x="-100%" y="0">
+                    <use xlink:href="#wanroi-tab-geometry-right" width="214" height="36" class="wanroi-tab-geometry" />
+                  </svg></g>
+              </svg>
+            </div>
+            <div class="wanroi-tab-content">
+              <div class="wanroi-tab-favicon"></div>
+              <div class="wanroi-tab-title">wanroi.com</div>
+              <div class="wanroi-tab-drag-handle"></div>
+              <div class="wanroi-tab-close"></div>
+            </div>
+
+          </div>
+
+          <div class="wanroi-tab add-btn" id="add-btn">
+            <div class="wanroi-tab-dividers"></div>
+            <div class="wanroi-tab-background">
+            </div>
+            <div class="wanroi-tab-content">
+              <span id="add-btn-span">
+                <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48">
+                  <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
+                </svg>
+              </span>
+              <div class="wanroi-tab-close" style="display:none"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="browser-controls" style="-webkit-app-region: no-drag">
+          <span class="minimize" id="minimize-window-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+              xmlns:svgjs="http://svgjs.com/svgjs" width="12" height="12" x="0" y="0" viewBox="0 0 32 32"
+              style="enable-background: new 0 0 512 512" xml:space="preserve" class="">
+              <g>
+                <path
+                  d="M6.014 16.98h19.972c1.352.02 1.352-2.019 0-2H6.014A.999.999 0 0 0 5 15.99c.01.558.462.998 1.014.99z">
+                </path>
+              </g>
+            </svg>
+          </span>
+          <span class="resize" id="maxunmax-window-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" height="48" viewBox="0 -960 960 960" width="48">
+              <path
+                d="M180-120q-24 0-42-18t-18-42v-600q0-24 18-42t42-18h600q24 0 42 18t18 42v600q0 24-18 42t-42 18H180Zm0-60h600v-600H180v600Zm0 0v-600 600Z" />
+            </svg>
+          </span>
+          <span class="close" id="close-window-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
+              id="Layer_1" x="0px" y="0px" width="10" height="10" viewBox="0 0 122.878 122.88"
+              enable-background="new 0 0 122.878 122.88" xml:space="preserve">
+              <g>
+                <path stroke="currentColor"
+                  d="M1.426,8.313c-1.901-1.901-1.901-4.984,0-6.886c1.901-1.902,4.984-1.902,6.886,0l53.127,53.127l53.127-53.127 c1.901-1.902,4.984-1.902,6.887,0c1.901,1.901,1.901,4.985,0,6.886L68.324,61.439l53.128,53.128c1.901,1.901,1.901,4.984,0,6.886 c-1.902,1.902-4.985,1.902-6.887,0L61.438,68.326L8.312,121.453c-1.901,1.902-4.984,1.902-6.886,0 c-1.901-1.901-1.901-4.984,0-6.886l53.127-53.128L1.426,8.313L1.426,8.313z" />
+              </g>
+            </svg>
+          </span>
+        </div>
+        <div class="wanroi-tabs-bottom-bar"></div>
+      </div>
+      <div class="wanroi-tabs-optional-shadow-below-bottom-bar"></div>
+    </div>
+  </div>
+  <script>
+    const Draggabilly = require('draggabilly');
+  </script>
+
+  <script src="./javascript/tabs.js"></script>
+  <script src="./javascript/ipc.js"></script>
+  <script src="./javascript/controls.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,422 @@
+:root {
+  --clr-body-bg: hsl(210, 45%, 16%);
+  --clr-card-bg: hsl(184, 96%, 21%);
+  --clr-card-bg-hover: hsl(192, 91%, 13%);
+  --clr-text: hsl(209 50% 90%);
+  --clr-heading: hsl(209 50% 80%);
+  --font-family: "Helvetica Neue",Helvetica,Arial;
+}
+
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: var(--clr-card-bg);
+  color: var(--clr-text);
+  fill: var(--clr-text) !important;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--clr-heading);
+  line-height: 1.1;
+}
+
+.wanroi-tabs {
+  box-sizing: border-box;
+  position: relative;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 12px;
+  height: 46px;
+  padding: 8px 3px 4px 3px;
+  background: var(--clr-body-bg);
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.wanroi-tabs * {
+  box-sizing: inherit;
+  font: inherit;
+}
+
+
+
+.wanroi-tabs-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+
+.wanroi-tabs .wanroi-tab {
+  position: absolute;
+  left: 0;
+  height: 36px;
+  width: 240px;
+  border: 0;
+  margin: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+
+#add-btn {
+  height: 36px !important;
+  width: 90px !important;
+}
+
+#add-btn span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  width: 28px;
+  height: 28px;
+  border-radius: 100%;
+  margin-top: -5px;
+}
+
+#add-btn span:hover {
+  background-color: rgba(94, 94, 94, 0.322);
+  transition: 0.3s;
+}
+
+#add-btn span svg {
+  width: 20px;
+  height: 20px;
+  fill: var(--clr-heading);
+}
+
+.wanroi-tabs .wanroi-tab,
+.wanroi-tabs .wanroi-tab * {
+  user-select: none;
+  cursor: default;
+}
+
+.wanroi-tabs .wanroi-tab .wanroi-tab-dividers {
+  position: absolute;
+  top: 7px;
+  bottom: 7px;
+  left: var(--tab-content-margin);
+  right: var(--tab-content-margin);
+}
+
+.wanroi-tabs .wanroi-tab .wanroi-tab-dividers,
+.wanroi-tabs .wanroi-tab .wanroi-tab-dividers::before,
+.wanroi-tabs .wanroi-tab .wanroi-tab-dividers::after {
+  pointer-events: none;
+}
+
+.wanroi-tabs .wanroi-tab .wanroi-tab-dividers::before,
+.wanroi-tabs .wanroi-tab .wanroi-tab-dividers::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--clr-card-bg);
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.wanroi-tabs .wanroi-tab .wanroi-tab-dividers::before {
+  left: 0;
+}
+
+.wanroi-tabs .wanroi-tab .wanroi-tab-dividers::after {
+  right: 0;
+}
+
+.wanroi-tabs .wanroi-tab:first-child .wanroi-tab-dividers::before,
+.wanroi-tabs .wanroi-tab:last-child .wanroi-tab-dividers::after {
+  opacity: 0;
+}
+
+.wanroi-tabs .wanroi-tab .wanroi-tab-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.wanroi-tabs .wanroi-tab .wanroi-tab-background>svg {
+  width: 100%;
+  height: 100%;
+}
+
+.wanroi-tabs .wanroi-tab .wanroi-tab-background>svg .wanroi-tab-geometry {
+  fill: var(--clr-card-bg-hover);
+}
+
+.wanroi-tabs .wanroi-tab.add-btn .wanroi-tab-background>svg .wanroi-tab-geometry {
+  fill: transparent;
+}
+
+.wanroi-tabs .wanroi-tab[active] {
+  z-index: 5;
+}
+
+.wanroi-tabs .wanroi-tab[active] .wanroi-tab-background>svg .wanroi-tab-geometry {
+  fill: var(--clr-card-bg);
+}
+
+.wanroi-tabs .wanroi-tab:not([active]) .wanroi-tab-background {
+  transition: opacity 0.2s ease;
+  opacity: 0;
+}
+
+@media (hover: hover) {
+  .wanroi-tabs .wanroi-tab:not([active]):hover {
+    z-index: 2;
+  }
+
+  .wanroi-tabs .wanroi-tab:not([active]):hover .wanroi-tab-background {
+    opacity: 1;
+  }
+}
+
+.wanroi-tabs .wanroi-tab.wanroi-tab-was-just-added {
+  top: 10px;
+  animation: wanroi-tab-was-just-added 120ms forwards ease-in-out;
+}
+
+.wanroi-tabs .wanroi-tab .wanroi-tab-content {
+  position: absolute;
+  display: flex;
+  top: 0;
+  bottom: 0;
+  left: var(--tab-content-margin);
+  right: var(--tab-content-margin);
+  padding: 9px 8px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  overflow: hidden;
+  pointer-events: all;
+}
+
+.wanroi-tabs .wanroi-tab[is-mini] .wanroi-tab-content {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.wanroi-tabs .wanroi-tab .wanroi-tab-favicon {
+  position: relative;
+  flex-shrink: 0;
+  flex-grow: 0;
+  height: 16px;
+  width: 16px;
+  background-size: 16px;
+  margin-left: 4px;
+}
+
+.wanroi-tabs .wanroi-tab[is-small] .wanroi-tab-favicon {
+  margin-left: 0;
+}
+
+.wanroi-tabs .wanroi-tab[is-mini]:not([active]) .wanroi-tab-favicon {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wanroi-tabs .wanroi-tab[is-mini][active] .wanroi-tab-favicon {
+  display: none;
+}
+
+.wanroi-tabs .wanroi-tab .wanroi-tab-title {
+  flex: 1;
+  vertical-align: top;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-left: 4px;
+  color: var(--clr-heading);
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 calc(100% - 24px), transparent);
+  mask-image: linear-gradient(90deg, #000 0%, #000 calc(100% - 24px), transparent);
+}
+
+.wanroi-tabs .wanroi-tab[is-small] .wanroi-tab-title {
+  margin-left: 0;
+}
+
+.wanroi-tabs .wanroi-tab .wanroi-tab-favicon+.wanroi-tab-title,
+.wanroi-tabs .wanroi-tab[is-small] .wanroi-tab-favicon+.wanroi-tab-title {
+  margin-left: 8px;
+}
+
+.wanroi-tabs .wanroi-tab[is-smaller] .wanroi-tab-favicon+.wanroi-tab-title,
+.wanroi-tabs .wanroi-tab[is-mini] .wanroi-tab-title {
+  display: none;
+}
+
+.wanroi-tabs .wanroi-tab[active] .wanroi-tab-title {
+  color: var(--clr-text);
+}
+
+.wanroi-tabs .wanroi-tab .wanroi-tab-drag-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.wanroi-tabs .wanroi-tab .wanroi-tab-close {
+  flex-grow: 0;
+  flex-shrink: 0;
+  position: relative;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><path stroke='rgba(210, 210, 210)' stroke-linecap='square' stroke-width='1.5' d='M0 0 L8 8 M8 0 L0 8'></path></svg>");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 8px 8px;
+}
+
+@media (hover: hover) {
+  .wanroi-tabs .wanroi-tab .wanroi-tab-close:hover {
+    background-color: var(--clr-body-bg);
+  }
+
+  .wanroi-tabs .wanroi-tab .wanroi-tab-close:hover:active {
+    background-color: var(--clr-body-bg);
+  }
+}
+
+@media not all and (hover: hover) {
+  .wanroi-tabs .wanroi-tab .wanroi-tab-close:active {
+    background-color: var(--clr-body-bg);
+    ;
+  }
+}
+
+@media (hover: hover) {
+  .wanroi-tabs .wanroi-tab:not([active]) .wanroi-tab-close:not(:hover):not(:active) {
+    opacity: 0.4;
+  }
+}
+
+.wanroi-tabs .wanroi-tab[is-smaller] .wanroi-tab-close {
+  margin-left: auto;
+}
+
+.wanroi-tabs .wanroi-tab[is-mini]:not([active]) .wanroi-tab-close {
+  display: none;
+}
+
+.wanroi-tabs .wanroi-tab[is-mini][active] .wanroi-tab-close {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@-moz-keyframes wanroi-tab-was-just-added {
+  to {
+    top: 0;
+  }
+}
+
+@-webkit-keyframes wanroi-tab-was-just-added {
+  to {
+    top: 0;
+  }
+}
+
+@-o-keyframes wanroi-tab-was-just-added {
+  to {
+    top: 0;
+  }
+}
+
+@keyframes wanroi-tab-was-just-added {
+  to {
+    top: 0;
+  }
+}
+
+.wanroi-tabs.wanroi-tabs-is-sorting .wanroi-tab:not(.wanroi-tab-is-dragging),
+.wanroi-tabs:not(.wanroi-tabs-is-sorting) .wanroi-tab.wanroi-tab-was-just-dragged {
+  transition: transform 120ms ease-in-out;
+}
+
+.wanroi-tabs .wanroi-tabs-bottom-bar {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  left: 0;
+  width: 100%;
+  background: var(--clr-card-bg);
+  z-index: 10;
+}
+
+.wanroi-tabs-optional-shadow-below-bottom-bar {
+  position: relative;
+  height: 1px;
+  width: 100%;
+  background-size: 1px 1px;
+  background-repeat: repeat-x;
+  background-position: 0% 0%;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min--moz-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2/1),
+only screen and (min-device-pixel-ratio: 2),
+only screen and (min-resolution: 192dpi),
+only screen and (min-resolution: 2dppx) {
+  .wanroi-tabs-optional-shadow-below-bottom-bar {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='2' height='2' viewBox='0 0 2 2'><rect x='0' y='0' width='2' height='1' fill='rgba(0, 0, 0, .27)'></rect></svg>");
+  }
+}
+
+
+
+
+.browser-controls {
+
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+
+}
+
+.browser-controls span {
+  width: 35px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  margin-top: -7px;
+  margin-right: -2px;
+}
+
+
+.browser-controls span svg {
+  fill: var(--clr-heading) !important;
+}
+
+.browser-controls span:hover {
+  background-color: rgba(77, 77, 77, 0.39);
+}
+
+.browser-controls span:hover svg {
+  fill: #ffff;
+
+}
+
+.browser-controls span svg {
+  fill: rgb(44, 44, 44);
+  width: 11px;
+  height: 11px;
+}

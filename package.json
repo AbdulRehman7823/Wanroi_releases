@@ -1,8 +1,8 @@
 {
   "name": "wanroi",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Browser application",
-  "main": "main.js",
+  "main": "src/main/main.js",
   "repository": "https://github.com/AbdulRehman7823/Wanroi_releases.git",
   "publish": {
     "provider": "github",
@@ -32,6 +32,7 @@
   "author": "abdulman7823",
   "license": "ISC",
   "dependencies": {
+    "draggabilly": "^3.0.0",
     "electron-updater": "^6.1.1"
   },
   "devDependencies": {
