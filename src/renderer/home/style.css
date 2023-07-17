@@ -1,9 +1,10 @@
+
 :root {
-  --clr-body-bg: hsl(210, 45%, 16%);
-  --clr-card-bg: hsl(184, 96%, 21%);
-  --clr-card-bg-hover: hsl(192, 91%, 13%);
-  --clr-text: hsl(209 50% 90%);
-  --clr-heading: hsl(209 50% 80%);
+  --clr-body-bg: hsl(0, 0%, 13%);
+  --clr-card-bg: hsl(0, 0%, 23%);
+  --clr-card-bg-hover: hsl(0, 0%, 31%);
+  --clr-text: hsl(0, 0%, 97%);
+  --clr-heading: hsl(0, 0%, 83%);
   --font-family: "Helvetica Neue",Helvetica,Arial;
 }
 
@@ -66,7 +67,8 @@ h3 {
 
 #add-btn {
   height: 36px !important;
-  width: 90px !important;
+  width: 60px !important;
+  
 }
 
 #add-btn span {
@@ -185,7 +187,7 @@ h3 {
 
 .wanroi-tabs .wanroi-tab.wanroi-tab-was-just-added {
   top: 10px;
-  animation: wanroi-tab-was-just-added 120ms forwards ease-in-out;
+  animation: wanroi-tab-was-just-added 80ms forwards ease-in-out;
 }
 
 .wanroi-tabs .wanroi-tab .wanroi-tab-content {
@@ -211,9 +213,9 @@ h3 {
   position: relative;
   flex-shrink: 0;
   flex-grow: 0;
-  height: 16px;
-  width: 16px;
-  background-size: 16px;
+  height: 18px;
+  width: 18px;
+  background-size: 18px;
   margin-left: 4px;
 }
 
@@ -420,3 +422,29 @@ only screen and (min-resolution: 2dppx) {
   width: 11px;
   height: 11px;
 }
+
+
+
+
+/****************************Loader*************************/
+.loader {
+  border: 2px solid #4d4d4d;
+  border-radius: 50%;
+  border-top: 2px solid #6d0377;
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/******************************************************************/
