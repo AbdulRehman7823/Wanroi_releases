@@ -39,10 +39,18 @@ const increaseTheLength = (obj)=>{
 
 ipcRenderer.on("initialization",(event,args) => {
   WINDOW_ID = args.windowId;
+  if(args.props){
+    wanroiTabs.addTab({
+      title: args.props.title,
+      favicon: args.props.favicon,
+      emit:"none"
+    });
+  }else{
   wanroiTabs.addTab({
     title: "New Tab",
     favicon: "../../../assets/logo.png",
   });
+ }
 });
 
 ipcRenderer.on("did-start-loading", (e, args) => {

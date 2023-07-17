@@ -1,12 +1,13 @@
 body{
-    background-color: #262626;
+    background-color: transparent;
     margin: 0;
     padding: 0;
     font-family: "Helvetica Neue",Helvetica,Arial;
-
 }
 
 .engine-main-container{
+    border-top-left-radius: 10px;
+    background-color: #262626;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,6 +1,9 @@
-const { ipcMain, BrowserWindow, BrowserView } = require("electron");
+const { ipcMain, BrowserWindow, BrowserView, screen } = require("electron");
 const array = [];
 const map = new Map();
+
+const x = 50;
+const y= 75;
 
 function setupBrowserViewIPC() {
   ipcMain.on("add-tab", (event, args) => {
@@ -10,10 +13,10 @@ function setupBrowserViewIPC() {
     if (map.has(args.id)) {
       browserView = map.get(args.id);
       browserView.setBounds({
-        x: 0,
-        y: 50,
-        width: mainWindow.getSize()[0],
-        height: mainWindow.getSize()[1],
+        x: x,
+        y: y,
+        width: mainWindow.getSize()[0]-x,
+        height: mainWindow.getSize()[1]-y,
       });
       mainWindow.setBrowserView(browserView);
     } else {
@@ -35,10 +38,10 @@ function setupBrowserViewIPC() {
     if (map.has(args.id)) {
       let browserView = map.get(args.id);
       browserView.setBounds({
-        x: 0,
-        y: 50,
-        width: mainWindow.getSize()[0],
-        height: mainWindow.getSize()[1],
+        x: x,
+        y: y,
+        width: mainWindow.getSize()[0]-x,
+        height: mainWindow.getSize()[1]-y,
       });
 
       mainWindow.setBrowserView(browserView);
@@ -49,8 +52,11 @@ function setupBrowserViewIPC() {
     console.log("delete", args);
     if (map.has(args.id)) {
       const v = map.get(args.id);
-      v.webContents.destroy();
-
+      if(args.isSeparate){
+        console.log("separated")
+      }else{
+        v.webContents.destroy();
+      }
       map.delete(args.id);
       if (array.length < 10) {
         array.push(generateBrowserView());
@@ -113,4 +119,22 @@ function generateBrowserView() {
   view.webContents.loadFile("src/renderer/wanroi/wanroiHome.html");
   return view;
 }
-module.exports = [setupBrowserViewIPC, addAdvanceBrowserView];
+
+function setBrowserViewToWindow(window,args,windowId){
+  console.log("window",windowId);
+  window.webContents.send("initialization",{windowId:windowId,props:args});
+  let browserView = map.get(args.id);
+  browserView.setBounds({
+    x: x,
+    y: y,
+    width: window.getSize()[0]-x,
+    height: window.getSize()[1]-y,
+  });
+  window.setBrowserView(browserView);
+  const currentScreen = screen.getDisplayNearestPoint(screen.getCursorScreenPoint());
+  const obj= screen.getCursorScreenPoint();
+  window.setPosition(obj.x-100 ,obj.y - currentScreen.bounds.y);
+  window.show();
+  map.set(windowId+"_tab_0",browserView);
+}
+module.exports = [setupBrowserViewIPC, addAdvanceBrowserView,setBrowserViewToWindow];

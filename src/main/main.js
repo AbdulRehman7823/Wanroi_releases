@@ -1,12 +1,15 @@
 const { app, BrowserWindow, screen, ipcMain } = require("electron");
 
-
-const windows =  [];
+const windows = [];
 const setupBrowserIPC = require("./ipcHandler/browser");
-const [setupBrowserViewIPC,addAdvanceBrowserView] = require("./ipcHandler/browserView");
+const [
+  setupBrowserViewIPC,
+  addAdvanceBrowserView,
+  setBrowserViewToWindow,
+] = require("./ipcHandler/browserView");
 setupBrowserIPC();
 setupBrowserViewIPC();
-function createAdvanceWindow(){
+function createAdvanceWindow() {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize;
   const win = new BrowserWindow({
     width: width,
@@ -27,7 +30,6 @@ function createAdvanceWindow(){
   });
   win.loadFile("src/renderer/home/index.html");
   windows.push(win);
-
 }
 function createWindow() {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize;
@@ -53,20 +55,21 @@ function createWindow() {
   addAdvanceBrowserView();
 
   win.once("ready-to-show", () => {
-    win.webContents.send("initialization",{windowId:"win_0"});
+    win.webContents.send("initialization", { windowId: "win_0" });
     win.show();
-    setTimeout(()=>createAdvanceWindow(),500)
+    setTimeout(() => createAdvanceWindow(), 500);
   });
 }
 app.whenReady().then(() => {
   createWindow();
+
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length == 0) createWindow();
   });
 });
 
 ipcMain.on("separate-tab", (event, args) => {
-  console.log(args)
-  windows[1].show();
-
+  const windowId = `win_${windows.length - 1}`;
+  setBrowserViewToWindow(windows[windows.length - 1], args, windowId);
+  setTimeout(() => createAdvanceWindow(), 200);
 });

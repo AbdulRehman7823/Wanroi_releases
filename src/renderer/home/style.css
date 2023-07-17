@@ -1,20 +1,31 @@
 
+/*
 :root {
-  --clr-body-bg: hsl(0, 0%, 13%);
-  --clr-card-bg: hsl(0, 0%, 23%);
-  --clr-card-bg-hover: hsl(0, 0%, 31%);
-  --clr-text: hsl(0, 0%, 97%);
-  --clr-heading: hsl(0, 0%, 83%);
+  --clr-body-bg: hsl(210, 45%, 16%);
+  --clr-card-bg: hsl(184, 96%, 21%);
+  --clr-card-bg-hover: hsl(193, 98%, 21%);
+  --clr-text: hsl(209 50% 90%);
+  --clr-heading: hsl(209 50% 80%);
   --font-family: "Helvetica Neue",Helvetica,Arial;
+  --clr-icon-hover:#2e2e2e62;
 }
+*/
 
-
+:root {
+  --clr-card-bg: #464646;
+  --clr-body-bg: #262626;
+  --clr-card-bg-hover:#363636;
+  --clr-text: hsl(0, 0%, 100%);
+  --clr-heading: hsl(0, 0%, 100%);
+  --font-family: "Helvetica Neue",Helvetica,Arial;
+  --clr-icon-hover:#22222293;
+}
 body {
   margin: 0;
   font-family: var(--font-family);
-  background: var(--clr-card-bg);
   color: var(--clr-text);
   fill: var(--clr-text) !important;
+  background-color:var(--clr-card-bg-hover);
 }
 
 h1,
@@ -24,13 +35,15 @@ h3 {
   line-height: 1.1;
 }
 
+
+
 .wanroi-tabs {
   box-sizing: border-box;
   position: relative;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 12px;
-  height: 46px;
-  padding: 8px 3px 4px 3px;
+  height: 40px;
+  padding: 2px;
   background: var(--clr-body-bg);
   border-radius: 5px 5px 0 0;
   overflow: hidden;
@@ -45,6 +58,40 @@ h3 {
 }
 
 
+.wanroi-logo {
+  background: var(--clr-card-bg-hover);
+  box-sizing: border-box;
+  color: #636363;
+  font-size: 1.125em; /*18/16*/
+  position: relative;
+  min-width: 50px ;
+  max-width: 50px ;
+  margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wanroi-logo img{
+  position: absolute;
+  z-index: 2;
+  width: 20px;
+  height: 20px;
+}
+.wanroi-logo:after {
+  background: var(--clr-card-bg-hover);
+  content: "";
+  height: 47px;
+  position: absolute;
+  right: -13px;
+  top: 0px;
+  -webkit-transform: skew(-35deg);
+  -moz-transform: skew(-35deg);
+  transform: skew(-35deg);
+  width: 33px;
+  margin-right: 6px;
+  border-radius: 5px;
+}
 
 .wanroi-tabs-content {
   position: relative;
@@ -56,19 +103,19 @@ h3 {
 .wanroi-tabs .wanroi-tab {
   position: absolute;
   left: 0;
-  height: 36px;
+  height: 32px;
   width: 240px;
   border: 0;
   margin: 0;
   z-index: 1;
+  
   pointer-events: none;
 }
 
 
 #add-btn {
   height: 36px !important;
-  width: 60px !important;
-  
+  width: 90px !important;
 }
 
 #add-btn span {
@@ -79,7 +126,7 @@ h3 {
   width: 28px;
   height: 28px;
   border-radius: 100%;
-  margin-top: -5px;
+  margin-top: -4px;
 }
 
 #add-btn span:hover {
@@ -122,7 +169,8 @@ h3 {
   bottom: 0;
   width: 1px;
   background: var(--clr-card-bg);
-  opacity: 1;
+  opacity: 0.7;
+  transform: skew(-35deg);
   transition: opacity 0.2s ease;
 }
 
@@ -140,34 +188,34 @@ h3 {
 }
 
 .wanroi-tabs .wanroi-tab .wanroi-tab-background {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
+
   width: 100%;
   height: 100%;
-  overflow: hidden;
   pointer-events: none;
 }
 
-.wanroi-tabs .wanroi-tab .wanroi-tab-background>svg {
-  width: 100%;
-  height: 100%;
+
+.wanroi-tabs .wanroi-tab .wanroi-tab-background {
+  background-color: var(--clr-card-bg-hover);
+  transform: skew(-35deg);
+	border-radius: 5px;
+	margin-right: 1px;
 }
 
-.wanroi-tabs .wanroi-tab .wanroi-tab-background>svg .wanroi-tab-geometry {
-  fill: var(--clr-card-bg-hover);
-}
-
-.wanroi-tabs .wanroi-tab.add-btn .wanroi-tab-background>svg .wanroi-tab-geometry {
-  fill: transparent;
+.wanroi-tabs .wanroi-tab.add-btn .wanroi-tab-background {
+  background-color: transparent;
 }
 
 .wanroi-tabs .wanroi-tab[active] {
   z-index: 5;
 }
 
-.wanroi-tabs .wanroi-tab[active] .wanroi-tab-background>svg .wanroi-tab-geometry {
-  fill: var(--clr-card-bg);
+.wanroi-tabs .wanroi-tab[active] .wanroi-tab-background{
+  background-color: var(--clr-card-bg);
+  transform: skew(-35deg);
+	border-radius: 5px;
+	margin-right: 1px;
 }
 
 .wanroi-tabs .wanroi-tab:not([active]) .wanroi-tab-background {
@@ -187,7 +235,7 @@ h3 {
 
 .wanroi-tabs .wanroi-tab.wanroi-tab-was-just-added {
   top: 10px;
-  animation: wanroi-tab-was-just-added 80ms forwards ease-in-out;
+  animation: wanroi-tab-was-just-added 120ms forwards ease-in-out;
 }
 
 .wanroi-tabs .wanroi-tab .wanroi-tab-content {
@@ -202,6 +250,7 @@ h3 {
   border-top-right-radius: 8px;
   overflow: hidden;
   pointer-events: all;
+  width: 100%;
 }
 
 .wanroi-tabs .wanroi-tab[is-mini] .wanroi-tab-content {
@@ -213,9 +262,9 @@ h3 {
   position: relative;
   flex-shrink: 0;
   flex-grow: 0;
-  height: 18px;
-  width: 18px;
-  background-size: 18px;
+  height: 16px;
+  width: 16px;
+  background-size: 16px;
   margin-left: 4px;
 }
 
@@ -274,9 +323,11 @@ h3 {
 .wanroi-tabs .wanroi-tab .wanroi-tab-close {
   flex-grow: 0;
   flex-shrink: 0;
-  position: relative;
+  position: absolute;
   width: 16px;
   height: 16px;
+  right: 0px;
+  top: 1px;
   border-radius: 50%;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'><path stroke='rgba(210, 210, 210)' stroke-linecap='square' stroke-width='1.5' d='M0 0 L8 8 M8 0 L0 8'></path></svg>");
   background-position: center center;
@@ -355,7 +406,7 @@ h3 {
   height: 4px;
   left: 0;
   width: 100%;
-  background: var(--clr-card-bg);
+  background: var(--clr-card-bg-hover);
   z-index: 10;
 }
 
@@ -425,26 +476,47 @@ only screen and (min-resolution: 2dppx) {
 
 
 
-
-/****************************Loader*************************/
-.loader {
-  border: 2px solid #4d4d4d;
-  border-radius: 50%;
-  border-top: 2px solid #6d0377;
+.sidebar{
+  background-color: var(--clr-card-bg-hover);
   width: 50px;
-  height: 50px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 2s linear infinite;
+  position: absolute;
+  top: 2px;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: calc(100% - 2px)
+  
 }
 
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+.sidebar .sidebar-top{
+  margin-top: 100px;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.sidebar .sidebar-top span{
+  display:flex;
+  align-items: center;
+}
+.sidebar .sidebar-top span svg{
+ width: 30px;
+ height: 30px;
+ fill: var(--clr-heading);
+ margin:5px;
 }
 
-/******************************************************************/
+
+.sidebar .sidebar-bottom{
+  margin-bottom: 20px;
+}
+
+.sidebar .sidebar-bottom span{
+  display:flex;
+  align-items: center;
+}
+.sidebar .sidebar-bottom span svg{
+ width: 30px;
+ height: 30px;
+ fill: var(--clr-heading);
+ margin:5px;
+}

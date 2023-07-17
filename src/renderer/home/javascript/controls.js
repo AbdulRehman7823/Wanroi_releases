@@ -41,6 +41,46 @@ document
 //****************************************End For Browser Window Controls ******************************* */
 //********************************************************************************************************** */
 
+
+
+var expandBtn = document.getElementById("expand-btn");
+expandBtn.addEventListener("click", (e) => {
+  if (expandBtn.classList.contains("shown")) {
+    document.querySelector(".wanroi-search-section").classList.add("hide");
+    expandBtn.style.top = "38px";
+    expandBtn.classList.remove("shown");
+    expandBtn.querySelector("svg").style.rotate = "180deg";
+    setTimeout(()=>{
+      document.querySelector(".wanroi-search-section").style.display = "none";
+    },300)
+  } else {
+    document.querySelector(".wanroi-search-section").style.display = "flex";
+
+    expandBtn.classList.add("shown");
+    expandBtn.style.top = "69px";
+    expandBtn.querySelector("svg").style.rotate = "360deg";
+    document.querySelector(".wanroi-search-section").classList.remove("hide");
+  }
+});
+
+var timeoutId;
+setTimeout(function () {
+  expandBtn.classList.remove("show-expand");
+  expandBtn.classList.add("hide-expand");
+}, 5000);
+
+expandBtn.addEventListener("mouseover", function () {
+  expandBtn.classList.remove("hide-expand");
+  expandBtn.classList.add("show-expand");
+  timeoutId = setTimeout(function () {
+    expandBtn.classList.remove("show-expand");
+    expandBtn.classList.add("hide-expand");
+  }, 5000);
+});
+
+
+
+
 var el = document.querySelector(".wanroi-tabs");
 var wanroiTabs = new WanroiTabs();
 
@@ -53,7 +93,7 @@ el.addEventListener("tabAdd", ({ detail }) => {
   ipc_addTab({ id: detail.tabEl.id });
 });
 el.addEventListener("tabRemove", ({ detail }) => {
-  ipc_removeTab({ id: detail.tabEl.id });
+  ipc_removeTab({ id: detail.tabEl.id,isSeparate:detail.isSeparate});
 });
 
 document.querySelector("#add-btn-span").addEventListener("click", (_) => {
