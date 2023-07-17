@@ -41,28 +41,25 @@ document
 //****************************************End For Browser Window Controls ******************************* */
 //********************************************************************************************************** */
 
-
-
-
 var el = document.querySelector(".wanroi-tabs");
 var wanroiTabs = new WanroiTabs();
 
 wanroiTabs.init(el);
 
-el.addEventListener("activeTabChange", ({ detail }) =>
-  console.log("Active tab changed", detail.tabEl)
-);
-el.addEventListener("tabAdd", ({ detail }) =>
-  console.log("Tab added", detail.tabEl)
-);
-el.addEventListener("tabRemove", ({ detail }) =>
-  console.log("Tab removed", detail.tabEl)
-);
+el.addEventListener("activeTabChange", ({ detail }) => {
+  ipc_switchTab({ id: detail.tabEl.id });
+});
+el.addEventListener("tabAdd", ({ detail }) => {
+  ipc_addTab({ id: detail.tabEl.id });
+});
+el.addEventListener("tabRemove", ({ detail }) => {
+  ipc_removeTab({ id: detail.tabEl.id });
+});
 
 document.querySelector("#add-btn-span").addEventListener("click", (_) => {
   wanroiTabs.addTab({
     title: "New Tab",
-    favicon: false,
+    favicon: "../../../assets/logo.png",
   });
 });
 
@@ -70,7 +67,7 @@ window.addEventListener("keydown", (event) => {
   if (event.ctrlKey && event.key === "t") {
     wanroiTabs.addTab({
       title: "New Tab",
-      favicon: false,
+      favicon: "../../../assets/logo.png",
     });
   }
 });

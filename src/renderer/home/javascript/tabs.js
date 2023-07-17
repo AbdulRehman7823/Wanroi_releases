@@ -1,4 +1,7 @@
 
+
+  let WINDOW_ID = "";
+  let counter =0;
   const TAB_CONTENT_MARGIN = 9;
   const TAB_CONTENT_OVERLAP_DISTANCE = 1;
 
@@ -12,6 +15,7 @@
   const TAB_SIZE_SMALLER = 60;
   const TAB_SIZE_MINI = 48;
 
+  let tabCounter=0;
   const noop = (_) => {};
 
   const closest = (value, array) => {
@@ -29,7 +33,7 @@
   };
 
   const tabTemplate = `
-    <div class="wanroi-tab">
+    <div class="wanroi-tab" style="-webkit-app-region: no-drag">
       <div class="wanroi-tab-dividers"></div>
       <div class="wanroi-tab-background">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><symbol id="wanroi-tab-geometry-left" viewBox="0 0 214 36"><path d="M17 0h197v36H0v-2c4.5 0 9-3.5 9-8V8c0-4.5 3.5-8 8-8z"/></symbol><symbol id="wanroi-tab-geometry-right" viewBox="0 0 214 36"><use xlink:href="#wanroi-tab-geometry-left"/></symbol><clipPath id="crop"><rect class="mask" width="100%" height="100%" x="0"/></clipPath></defs><svg width="52%" height="100%"><use xlink:href="#wanroi-tab-geometry-left" width="214" height="36" class="wanroi-tab-geometry"/></svg><g transform="scale(-1, 1)"><svg width="52%" height="100%" x="-100%" y="0"><use xlink:href="#wanroi-tab-geometry-right" width="214" height="36" class="wanroi-tab-geometry"/></svg></g></svg>
@@ -219,9 +223,8 @@
       }
 
       tabProperties = Object.assign({}, defaultTapProperties, tabProperties);
-
       const addBtn = document.getElementById("add-btn");
-      tabEl.id="tab_"+this.tabEls.length;
+      tabEl.id=WINDOW_ID+"_tab_"+counter;
       this.tabContentEl.insertBefore(tabEl, addBtn);
       this.setTabCloseEventListener(tabEl);
       this.updateTab(tabEl, tabProperties);
@@ -230,8 +233,12 @@
       this.cleanUpPreviouslyDraggedTabs();
       this.layoutTabs();
       this.setupDraggabilly();
-
-      ipc_addTab({id:tabEl.id});
+      counter++;
+      if(this.tabEls.length==2){
+        tabEl.style.webkitAppRegion = 'drag';
+      }else if(this.tabEls.length==3){
+          this.tabEls[0].style.webkitAppRegion = 'no-drag';
+      }
     }
 
     setTabCloseEventListener(tabEl) {
@@ -254,7 +261,6 @@
       if (activeTabEl) activeTabEl.removeAttribute("active");
       tabEl.setAttribute("active", "");
       this.emit("activeTabChange", { tabEl });
-      ipc_switchTab({id:tabEl.id})
     }
 
     removeTab(tabEl) {
@@ -276,7 +282,6 @@
       this.cleanUpPreviouslyDraggedTabs();
       this.layoutTabs();
       this.setupDraggabilly();
-      ipc_removeTab({id:tabEl.id})
     }
 
     updateTab(tabEl, tabProperties) {
@@ -378,7 +383,14 @@
           // Current index be computed within the event since it can change during the dragMove
           if (this.tabEls.length > 2)
             if (pointer.clientY > 60) {
-              this.removeTab(tabEl);
+              const title =  tabEl.querySelector('.wanroi-tab-title').innerText;
+              const favicon = tabEl.querySelector('.wanroi-tab-favicon').style.backgroundImage;
+              const obj = {
+                id:tabEl.id,
+                favicon:favicon,
+                title:title
+              }
+              ipc_separateTab(obj)
               return;
             } 
 
